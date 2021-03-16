@@ -1,17 +1,27 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
     <ion-title>
-      Tab 2
+      Profile
     </ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Tab 2</ion-title>
-    </ion-toolbar>
-  </ion-header>
+  <div class="profile">
+    Nama: Kevin Angka Wijaya <br>
+    Nrp: c14180032 <br>
+  </div>
+  <div>
+    Tebakan Angka : 
+    <input type="text" placeholder="Masukkan Angka" [(ngModel)]="angka">
+    <ion-button (click)="submitAngka()">Submit</ion-button> <br>
 
-  <app-explore-container name="Tab 2 page"></app-explore-container>
-</ion-content>
+    <img *ngIf="muncul" src="/assets/icon/fotoprofile.jpg" alt="image">
+
+  </div>
+
+  
+  
+  
+  
+</ion-content>  
