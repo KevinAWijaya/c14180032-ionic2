@@ -1,31 +1,38 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { AngularFireStorage } from '@angular/fire/storage';
 import { FotoService } from '../services/foto.service';
 
+export interface fileFoto{
+  name : string,
+  path : string
+}
+
 @Component({
-  selector: 'app-tab2',
-  templateUrl: 'tab2.page.html',
-  styleUrls: ['tab2.page.scss']
+  selector: 'app-tab4',
+  templateUrl: './tab4.page.html',
+  styleUrls: ['./tab4.page.scss'],
 })
-export class Tab2Page {
+export class Tab4Page implements OnInit {
 
   urlImageStorage : string[] = [];
 
-  constructor(public FotoService:FotoService, private afStorage : AngularFireStorage,) {}
+  constructor(
+    private afStorage : AngularFireStorage,
+    public fotoService : FotoService
+  ) { }
 
-  async ngOnInit(){
-    await this.FotoService.loadFoto();
+  ngOnInit() {
+    
   }
 
+  // did enter dipanggil saat sudah masuk ke dalam halaman
   async ionViewDidEnter(){
-    await this.FotoService.loadFoto();
+    await this.fotoService.loadFoto();
     this.tampilkanData();
 
   }
 
-  tambahFoto(){
-    this.FotoService.tambahFoto();
-  }
+
   hapusFoto(){
     var refImage = this.afStorage.storage.ref('imgStorage');
     refImage.listAll()
@@ -59,10 +66,10 @@ export class Tab2Page {
 
   uploadFoto(){
     this.urlImageStorage=[];
-    for (var index in this.FotoService.dataFoto){
-      const imgFilePath = "imgStorage/"+this.FotoService.dataFoto[index].filePath;
+    for (var index in this.fotoService.dataFoto){
+      const imgFilePath = "imgStorage/"+this.fotoService.dataFoto[index].filePath;
       
-      this.afStorage.upload(imgFilePath, this.FotoService.dataFoto[index].dataImage).then(() => { // sudah upload lalu mau ambil url file yang sudah di uplaod
+      this.afStorage.upload(imgFilePath, this.fotoService.dataFoto[index].dataImage).then(() => { // sudah upload lalu mau ambil url file yang sudah di uplaod
         this.afStorage.storage.ref().child(imgFilePath).getDownloadURL().then((url) => {
           this.urlImageStorage.unshift(url);
         });
@@ -73,4 +80,3 @@ export class Tab2Page {
   }
 
 }
-

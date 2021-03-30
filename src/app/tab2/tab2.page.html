@@ -1,27 +1,39 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
     <ion-title>
-      Profile
+      Galeri Foto
     </ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content [fullscreen]="true">
-  <div class="profile">
-    Nama: Kevin Angka Wijaya <br>
-    Nrp: c14180032 <br>
-  </div>
-  <div>
-    Tebakan Angka : 
-    <input type="text" placeholder="Masukkan Angka" [(ngModel)]="angka">
-    <ion-button (click)="submitAngka()">Submit</ion-button> <br>
+  <ion-fab vertical="bottom" horizontal="center" slot="fixed">
+    <ion-fab-button (click)="tambahFoto()">
+      <ion-icon name="camera"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+  
+  <ion-card class="ion-text-center">
+    <ion-card-header>
+      <ion-card-title>Upload Foto</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      <ion-button color="danger" shape="round" size="medium" (click)="hapusFoto()">Hapus</ion-button>
+      <ion-button color="primary" shape="round" size="medium" (click)="uploadFoto()">Upload</ion-button>
+    </ion-card-content>
+  </ion-card>
 
-    <img *ngIf="muncul" src="/assets/icon/fotoprofile.jpg" alt="image">
+  <ion-grid>
+    <ion-row>
+      <ion-col size="6" *ngFor="let isiFoto of FotoService.dataFoto; index as position">
+        <ion-card-header>
+          {{isiFoto.filePath}}
+        </ion-card-header>
+        <ion-card-content>
+          <ion-img [src]="isiFoto.webViewPath"></ion-img>
+        </ion-card-content>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
 
-  </div>
-
-  
-  
-  
-  
-</ion-content>  
+</ion-content>

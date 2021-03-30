@@ -1,25 +1,16 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
     <ion-title>
-      Galeri Foto
+      Data Pribadi
     </ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content [fullscreen]="true">
-
-  <ion-grid>
-    <ion-row>
-      <ion-col size="6" *ngFor="let isiFoto of FotoService.dataFoto; index as position">
-        <ion-img [src]="isiFoto.webViewPath"></ion-img>
-      </ion-col>
-    </ion-row>
-  </ion-grid>
-
-  <ion-fab vertical="bottom" horizontal="center" slot="fixed">
-    <ion-fab-button (click)="tambahFoto()">
-      <ion-icon name="camera"></ion-icon>
-    </ion-fab-button>
-  </ion-fab>
-  
+  <div style="padding-left: 100px; padding-top: 25px;">
+    Nama : Kevin Angka WIjaya <br>
+    NRP : c14180032 <br>
+    Email : c14180032@john.petra.ac.id <br>
+    No WA : 0895631235283 <br>
+  </div>
 </ion-content>
