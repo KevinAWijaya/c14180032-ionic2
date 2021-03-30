@@ -10,6 +10,7 @@ import { FotoService } from '../services/foto.service';
 export class Tab2Page {
 
   urlImageStorage : string[] = [];
+  nameImage : string[] = [];
 
   constructor(public FotoService:FotoService, private afStorage : AngularFireStorage,) {}
 

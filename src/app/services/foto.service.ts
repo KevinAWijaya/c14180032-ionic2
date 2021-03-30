@@ -10,7 +10,7 @@ const { Camera, Filesystem, Storage } = Plugins;
 export class FotoService {
 
   public dataFoto : Photo[] = [];
-  private keyFoto : string = "foto";  
+  private keyFoto : string = "foto";
   private platform : Platform;
 
   constructor(platform : Platform) {
@@ -40,7 +40,7 @@ export class FotoService {
   public async simpanFoto(foto: CameraPhoto){
     const base64Data = await this.readAsBase64(foto);
 
-    const namaFile = new Date().getTime()+".png";
+    const namaFile = new Date().getTime()+"jpeg";
     const simpanFile = await Filesystem.writeFile({
       path : namaFile,
       data : base64Data,
@@ -50,7 +50,7 @@ export class FotoService {
     const response = await fetch(foto.webPath);
     const blob = await response.blob();
     const dataFoto = new File([blob], foto.path, {
-      type: "image/png"
+      type: "image/jpeg"
     });
 
     console.log(simpanFile.uri)
@@ -106,13 +106,13 @@ export class FotoService {
           path : foto.filePath,
           directory : FilesystemDirectory.Data
         });
-        foto.webViewPath = `data:image/png;base64,${readFile.data}`
+        foto.webViewPath = `data:image/jpeg;base64,${readFile.data}`
 
         const response = await fetch(foto.webViewPath);
         const blob = await response.blob();
 
         foto.dataImage = new File([blob], foto.filePath,{
-          type: "image/png"
+          type: "image/jpeg"
         });
 
       }
